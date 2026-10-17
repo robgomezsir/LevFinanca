@@ -20,8 +20,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -56,6 +54,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.lev.data.repository.SyncChipState
 import com.example.lev.data.repository.SyncMode
 import com.example.lev.ui.components.SyncStatusChip
+import com.example.lev.ui.components.LevCard
 import com.example.lev.ui.theme.LevTheme
 import com.example.lev.ui.theme.PoiretOne
 import java.text.SimpleDateFormat
@@ -187,8 +186,7 @@ private fun StatusCard(
     lastMessage: String,
     lastSyncAt: Long?,
 ) {
-    Card(
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    LevCard(
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
@@ -229,8 +227,7 @@ private fun ConnectionCard(
     var secret by rememberSaveable { mutableStateOf("") }
     var secretVisible by rememberSaveable { mutableStateOf(false) }
 
-    Card(
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    LevCard(
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
@@ -303,8 +300,7 @@ private fun ModeCard(
     onPullReplace: () -> Unit,
     onCompact: () -> Unit,
 ) {
-    Card(
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    LevCard(
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
@@ -403,8 +399,7 @@ private fun ScriptCard(scriptText: String) {
     val clipboard = LocalClipboardManager.current
     var expanded by rememberSaveable { mutableStateOf(false) }
 
-    Card(
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    LevCard(
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(

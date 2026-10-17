@@ -1,4 +1,4 @@
-# Lev
+# leve
 
 ![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.0.0-7F52FF?logo=kotlin)
@@ -17,7 +17,7 @@ App de finanças pessoais offline-first para o Brasil, pensado para registrar de
 - [Documentação](#documentação)
 
 ## Visão geral
-O Lev combina domínio financeiro, regras contábeis brasileiras e um fluxo de operação rápido em Jetpack Compose. A fonte de verdade é o Room local; a planilha do Google Sheets funciona como espelho, backup e canal de sincronização opcional.
+O leve combina domínio financeiro, regras contábeis brasileiras e um fluxo de operação rápido em Jetpack Compose. A fonte de verdade é o Room local; a planilha do Google Sheets funciona como espelho, backup e canal de sincronização opcional.
 
 Os módulos já cobertos em domínio incluem:
 - cartões e faturas com fechamento/due day

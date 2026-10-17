@@ -1,7 +1,6 @@
 package com.example.lev.ui.screens.categories
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -20,7 +20,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -40,10 +39,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.lev.data.model.Category
+import com.example.lev.ui.components.EmptyState
+import com.example.lev.ui.components.LevCard
 import com.example.lev.ui.theme.PoiretOne
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,11 +86,9 @@ fun CategoriesScreen(
                         .padding(innerPadding),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(
-                    text = "Nenhuma categoria cadastrada.\nToque no + para criar uma categoria.",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center,
+                EmptyState(
+                    title = "Nenhuma categoria cadastrada",
+                    description = "Toque no + para criar uma categoria.",
                 )
             }
         } else {
@@ -165,13 +163,12 @@ fun CategoryItem(
         } catch (_: IllegalArgumentException) {
             MaterialTheme.colorScheme.primary
         }
-    Card(
+    LevCard(
+        onClick = onClick,
         modifier =
             Modifier
                 .fillMaxWidth()
-                .clickable(onClick = onClick)
                 .padding(start = if (indent) 16.dp else 0.dp),
-        shape = MaterialTheme.shapes.medium,
     ) {
         Row(
             modifier =
@@ -193,18 +190,15 @@ fun CategoryItem(
                 )
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
+                // Ponto de cor = identidade visual da categoria (hex do dado).
+                // A letra do tipo era redundante com o rótulo à esquerda.
                 Box(
                     modifier =
                         Modifier
-                            .background(color = color.copy(alpha = 0.2f), shape = CircleShape)
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                ) {
-                    Text(
-                        text = kindLabel.take(1),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = color,
-                    )
-                }
+                            .padding(end = 12.dp)
+                            .size(10.dp)
+                            .background(color = color, shape = CircleShape),
+                )
                 IconButton(onClick = onDelete) {
                     Icon(
                         imageVector = Icons.Default.Delete,
