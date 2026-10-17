@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Só no debug: activity hospedeira dos testes de screenshot. Sem
+     intent-filter de LAUNCHER: nenhum ícone extra; o Robolectric resolve o
+     intent explícito do ActivityScenario pelo componente declarado.
+     Não vai para o release. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity
+            android:name="androidx.activity.ComponentActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Material.NoActionBar" />
+    </application>
+</manifest>

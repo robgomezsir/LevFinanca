@@ -1,0 +1,35 @@
+build:
+  maxIssues: 0
+
+config:
+  validation: true
+
+complexity:
+  LongParameterList:
+    active: false
+  TooManyFunctions:
+    active: false
+  LongMethod:
+    active: true
+    threshold: 200
+
+style:
+  MagicNumber:
+    active: false
+  UnusedPrivateMember:
+    active: false
+  ReturnCount:
+    active: true
+    max: 5
+  LoopWithTooManyJumpStatements:
+    active: false
+
+naming:
+  FunctionNaming:
+    active: true
+    ignoreAnnotated:
+      - 'Composable'
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false

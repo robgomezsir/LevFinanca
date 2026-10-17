@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Regras de auto-backup para dispositivos abaixo da API 31.
+   Os dados financeiros (banco Room e preferências) ficam fora do backup
+   automático do Android por padrão. O backup/restauração é explícito do
+   usuário via exportação JSON (ver M8-seguranca-notificacoes-import.md).
+   Ver https://developer.android.com/guide/topics/data/autobackup
+-->
+<full-backup-content>
+    <exclude
+        domain="database"
+        path="." />
+    <exclude
+        domain="sharedpref"
+        path="." />
+    <exclude
+        domain="file"
+        path="datastore" />
+</full-backup-content>

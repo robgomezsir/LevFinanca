@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Regras de extração de dados para API 31+.
+   Cloud backup: dados financeiros fora do backup automático por padrão.
+   Device transfer: transferência entre aparelhos é sempre uma ação explícita
+   do usuário, então o banco local é preservado nesse fluxo.
+   Ver https://developer.android.com/about/versions/12/backup-restore#xml-changes
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude
+            domain="database"
+            path="." />
+        <exclude
+            domain="sharedpref"
+            path="." />
+        <exclude
+            domain="file"
+            path="datastore" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude
+            domain="sharedpref"
+            path="." />
+    </device-transfer>
+</data-extraction-rules>
