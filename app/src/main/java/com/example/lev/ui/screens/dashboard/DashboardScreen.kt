@@ -191,21 +191,7 @@ private fun CreditCardItem(
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.weight(1f),
                 )
-                Box(
-                    modifier =
-                        Modifier
-                            .background(
-                                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
-                                shape = CircleShape,
-                            )
-                            .padding(horizontal = 10.dp, vertical = 6.dp),
-                ) {
-                    Text(
-                        text = "Cartão",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.primary,
-                    )
-                }
+                AccountTypeBadge(label = "Cartão")
             }
 
             LedgerAmountRow(label = "Limite", cents = card.account.creditLimitCents ?: 0L, signed = false)
@@ -315,21 +301,7 @@ private fun AccountItem(
                     text = account.name,
                     style = MaterialTheme.typography.titleMedium,
                 )
-                Box(
-                    modifier =
-                        Modifier
-                            .background(
-                                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
-                                shape = CircleShape,
-                            )
-                            .padding(horizontal = 10.dp, vertical = 6.dp),
-                ) {
-                    Text(
-                        text = accountTypeLabel,
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.primary,
-                    )
-                }
+                AccountTypeBadge(label = accountTypeLabel)
             }
 
             Row(
@@ -340,5 +312,25 @@ private fun AccountItem(
                 MoneyText(cents = card.currentBalanceCents, useSemanticColor = false)
             }
         }
+    }
+}
+
+/** Badge do tipo de conta: par primário/primárioContainer medido (5.69:1 claro, 6.52:1 escuro). */
+@Composable
+private fun AccountTypeBadge(label: String) {
+    Box(
+        modifier =
+            Modifier
+                .background(
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    shape = CircleShape,
+                )
+                .padding(horizontal = 10.dp, vertical = 6.dp),
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
+        )
     }
 }
