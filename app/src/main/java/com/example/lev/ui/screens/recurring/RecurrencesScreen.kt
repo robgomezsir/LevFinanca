@@ -15,8 +15,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -35,9 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.lev.domain.MoneyParser
 import com.example.lev.ui.components.EmptyState
+import com.example.lev.ui.components.LevCard
 import com.example.lev.ui.components.LoadingList
 import com.example.lev.ui.components.MoneyText
-import com.example.lev.ui.theme.PoiretOne
 
 @Composable
 fun RecurrencesScreen(
@@ -56,7 +54,6 @@ fun RecurrencesScreen(
             Text(
                 text = "Recorrências",
                 style = MaterialTheme.typography.titleLarge,
-                fontFamily = PoiretOne,
             )
             TextButton(onClick = { showCreate = true }) {
                 Text("+ Nova")
@@ -149,9 +146,7 @@ private fun RecurrenceCard(
             else -> recurrence.frequency
         }
 
-    Card(
-        shape = MaterialTheme.shapes.large,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+    LevCard(
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
@@ -198,7 +193,11 @@ private fun RecurrenceCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("Ativa", style = MaterialTheme.typography.bodyMedium)
+                    // Bug documentado no audit: o rótulo era sempre "Ativa".
+                    Text(
+                        text = if (recurrence.active) "Ativa" else "Pausada",
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
                     Switch(checked = recurrence.active, onCheckedChange = { onToggle() })
                 }
                 TextButton(onClick = onDelete) {

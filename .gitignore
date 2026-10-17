@@ -12,3 +12,4 @@ local.properties
 .env
 .kotlin
 .freebuff
+ui-dump.xml
