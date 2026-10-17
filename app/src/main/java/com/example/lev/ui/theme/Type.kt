@@ -11,9 +11,10 @@ import com.example.lev.R
 /**
  * Fonte da marca (SIL OFL 1.1, licença embutida em `res/raw/poiret_one_ofl.txt`).
  *
- * Tem um único peso e dígitos decorativos: use na marca e em títulos de tela, **nunca** em
- * valores monetários ou tabelas numéricas, onde a legibilidade e o alinhamento tabular
- * (`tnum`) importam mais que a identidade.
+ * Tem um único peso e traço fino: ficou restrita ao wordmark ("leve") e ao
+ * título de tela (`headlineLarge`) — nunca em valores monetários, section
+ * headers, tabelas ou qualquer texto funcional, onde a legibilidade e o
+ * alinhamento tabular (`tnum`) importam mais que a identidade.
  */
 val PoiretOne =
     FontFamily(
@@ -60,7 +61,6 @@ val Typography =
             ),
         headlineMedium =
             TextStyle(
-                fontFamily = PoiretOne,
                 fontWeight = FontWeight.Normal,
                 fontSize = 28.sp,
                 lineHeight = 36.sp,
@@ -68,7 +68,6 @@ val Typography =
             ),
         headlineSmall =
             TextStyle(
-                fontFamily = PoiretOne,
                 fontWeight = FontWeight.Normal,
                 fontSize = 24.sp,
                 lineHeight = 32.sp,
@@ -76,7 +75,6 @@ val Typography =
             ),
         titleLarge =
             TextStyle(
-                fontFamily = FontFamily.Default,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 20.sp,
                 lineHeight = 26.sp,
@@ -84,10 +82,16 @@ val Typography =
             ),
         titleMedium =
             TextStyle(
-                fontFamily = FontFamily.Default,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 16.sp,
                 lineHeight = 22.sp,
+                letterSpacing = 0.1.sp,
+            ),
+        titleSmall =
+            TextStyle(
+                fontWeight = FontWeight.Medium,
+                fontSize = 14.sp,
+                lineHeight = 20.sp,
                 letterSpacing = 0.1.sp,
             ),
         // Valores monetários: sempre tabulares, herdado de tabularTextStyle.
@@ -105,9 +109,15 @@ val Typography =
                 lineHeight = 20.sp,
                 letterSpacing = 0.25.sp,
             ),
+        bodySmall =
+            tabularTextStyle.copy(
+                fontWeight = FontWeight.Normal,
+                fontSize = 12.sp,
+                lineHeight = 16.sp,
+                letterSpacing = 0.4.sp,
+            ),
         labelLarge =
             TextStyle(
-                fontFamily = FontFamily.Default,
                 fontWeight = FontWeight.Medium,
                 fontSize = 14.sp,
                 lineHeight = 20.sp,
@@ -115,10 +125,16 @@ val Typography =
             ),
         labelMedium =
             TextStyle(
-                fontFamily = FontFamily.Default,
                 fontWeight = FontWeight.Medium,
                 fontSize = 12.sp,
                 lineHeight = 16.sp,
                 letterSpacing = 0.3.sp,
+            ),
+        labelSmall =
+            TextStyle(
+                fontWeight = FontWeight.Medium,
+                fontSize = 11.sp,
+                lineHeight = 16.sp,
+                letterSpacing = 0.5.sp,
             ),
     )

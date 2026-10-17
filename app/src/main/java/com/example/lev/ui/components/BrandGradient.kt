@@ -127,11 +127,10 @@ fun LevCard(
                 onClick = onClick,
                 shape = MaterialTheme.shapes.large,
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
-                border =
-                    androidx.compose.foundation.BorderStroke(
-                        1.dp,
-                        MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
-                    ),
+                // Borda funcional em opacidade cheia (outlineVariant é apenas o
+                // separador de divisor); profundidade vem do contraste
+                // card-sobre-canvas, sem sombra.
+                border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
                 modifier = modifier,
             ) {
                 Column(modifier = Modifier.fillMaxWidth(), content = content)
@@ -140,11 +139,7 @@ fun LevCard(
             Card(
                 shape = MaterialTheme.shapes.large,
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
-                border =
-                    androidx.compose.foundation.BorderStroke(
-                        1.dp,
-                        MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
-                    ),
+                border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
                 modifier = modifier,
             ) {
                 Column(modifier = Modifier.fillMaxWidth(), content = content)
@@ -181,7 +176,9 @@ fun LevSectionHeader(
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.headlineSmall,
+            // Section header funcional: peso legível (SemiBold 16sp). O Poiret
+            // One (traço de cabelo) ficou restrito a wordmark e título de tela.
+            style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.weight(1f),
         )
