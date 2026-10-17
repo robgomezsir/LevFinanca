@@ -20,7 +20,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -43,6 +42,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.lev.data.model.Account
+import com.example.lev.domain.MoneyFormatter
+import com.example.lev.ui.components.EmptyState
+import com.example.lev.ui.components.LevCard
 import com.example.lev.ui.components.MoneyText
 import com.example.lev.ui.theme.PoiretOne
 
@@ -87,11 +89,9 @@ fun AccountsScreen(
                         .padding(innerPadding),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(
-                    text = "Nenhuma conta cadastrada.\nToque no + para criar uma conta.",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                EmptyState(
+                    title = "Nenhuma conta cadastrada",
+                    description = "Toque no + para criar uma conta.",
                 )
             }
         } else {
@@ -155,12 +155,9 @@ fun AccountItem(
             "LOAN" to "Empréstimo",
         )[account.type] ?: account.type
 
-    Card(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .clickable(onClick = onClick),
-        shape = MaterialTheme.shapes.medium,
+    LevCard(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onClick,
     ) {
         Row(
             modifier =
@@ -202,9 +199,11 @@ fun AccountItem(
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
-                    if (account.creditLimitCents != null) {
+                    account.creditLimitCents?.let { limitCents ->
                         Text(
-                            text = "Limite: R$ ${(account.creditLimitCents / 100.0)}",
+                            // Bug documentado no audit: formatava com template
+                            // cru (R$ 5000.0). Usa o MoneyFormatter do domínio.
+                            text = "Limite: ${MoneyFormatter.format(limitCents)}",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
