@@ -123,7 +123,8 @@ fun AccountList(
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
+        // 92dp de folga: evita que o FAB fixo sobrepinja a última linha.
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 92.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         items(accounts, key = { it.id }) { account ->
