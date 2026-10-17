@@ -1,6 +1,5 @@
 package com.example.lev.ui.screens.cards
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,8 +11,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.lev.data.repository.FinanceRepository
 import com.example.lev.ui.components.EmptyState
+import com.example.lev.ui.components.LevCard
 import com.example.lev.ui.components.MoneyText
 import com.example.lev.ui.theme.PoiretOne
 
@@ -73,10 +71,9 @@ fun CardsScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 items(cards, key = { it.id }) { card ->
-                    Card(
-                        shape = MaterialTheme.shapes.large,
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-                        modifier = Modifier.fillMaxWidth().clickable { onOpenInvoice(card.id) },
+                    LevCard(
+                        onClick = { onOpenInvoice(card.id) },
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         Column(
                             modifier = Modifier.fillMaxWidth().padding(16.dp),
