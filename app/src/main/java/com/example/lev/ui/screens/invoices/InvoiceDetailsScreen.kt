@@ -16,8 +16,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -41,6 +39,7 @@ import com.example.lev.domain.InvoiceCycle
 import com.example.lev.domain.InvoiceGenerator
 import com.example.lev.domain.InvoiceLifecycle
 import com.example.lev.domain.MoneyFormatter
+import com.example.lev.ui.components.LevCard
 import com.example.lev.ui.screens.transactions.TransactionDetailSheet
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -279,10 +278,8 @@ private fun InvoiceHeaderCard(
     onPay: () -> Unit,
     onReopen: () -> Unit,
 ) {
-    Card(
+    LevCard(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-        shape = MaterialTheme.shapes.large,
     ) {
         Column(
             modifier =
@@ -293,7 +290,7 @@ private fun InvoiceHeaderCard(
         ) {
             Text(
                 text = accountName,
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.titleLarge,
             )
             Text(
                 text = referenceLabel,
@@ -352,7 +349,7 @@ private fun InvoiceRow(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.shapes.medium)
+                .background(MaterialTheme.colorScheme.surfaceContainerHigh, MaterialTheme.shapes.medium)
                 .clickable(onClick = onClick)
                 .padding(12.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
