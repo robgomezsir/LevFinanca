@@ -9,5 +9,11 @@
             android:name="androidx.activity.ComponentActivity"
             android:exported="true"
             android:theme="@android:style/Theme.Material.NoActionBar" />
+        <!-- Tela-piloto do design system (Fase 2). Sem LAUNCHER: nenhum ícone
+             novo; aberta via am start explícito. Não vai para o release. -->
+        <activity
+            android:name="com.example.lev.ui.theme.preview.DesignSystemPreviewActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Lev" />
     </application>
 </manifest>
